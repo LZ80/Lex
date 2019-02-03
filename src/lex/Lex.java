@@ -18,16 +18,21 @@ import java.util.regex.Pattern;
 public class Lex {
     
     public static void main(String[] args) throws IOException {
-        String toDebugg = readFile("Test.java");
-        ArrayList<Token> myTokens = lex(toDebugg);
+        String file = readFile("Test.java");
+        ArrayList<Token> myTokens = lex(file);
         
-        System.out.println(toDebugg);
+        System.out.println(file);
+        /*for(char x : file.toCharArray())
+        {
+            System.out.println((int)(x));
+        }*/
         for (Token tok : myTokens) {
             System.out.println(tok);
         }
     }
     
     public static ArrayList<Token> lex(String input) {
+        int line = 1;
         ArrayList<Token> tokens = new ArrayList<Token>();
 
         StringBuffer tokenPatternsBuffer = new StringBuffer();
@@ -39,14 +44,23 @@ public class Lex {
 
         Matcher matcher = tokenPatterns.matcher(input);
         while (matcher.find()) {
-            int i = 0;
             for (Token.TokenType tk : Token.TokenType.values()) {
                 if (matcher.group(Token.TokenType.SKIP.toString()) != null) {
+                    //tokens.add(new Token(tk, matcher.group(tk.name()), line));
+                    continue;
+                }
+                else if(matcher.group(Token.TokenType.LSKIP.toString()) != null)
+                {
+                    if(tk.name() == Token.TokenType.LSKIP.toString())
+                    {
+                        //tokens.add(new Token(tk, matcher.group(tk.name()), line));
+                        line++;
+                    }
+                    
                     continue;
                 }
                 else if (matcher.group(tk.name()) != null) {
-                    tokens.add(new Token(tk, matcher.group(tk.name())));
-                    i++;
+                    tokens.add(new Token(tk, matcher.group(tk.name()), line));
                     continue;
                 }
             }
