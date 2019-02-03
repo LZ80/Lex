@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Arkai Ariza
  */
 public class Tree<T> {
-    private Node<T> root;
+    public Node<T> root;
 
     public Tree(Node<T> node) {
         root = node;
@@ -43,4 +43,6 @@ public class Tree<T> {
         public Node<T> parent;
         public ArrayList<Node<T>> children;
     }
+    
+    
 }

@@ -39,6 +39,7 @@ public class Lex {
         }
         
         makeTree();
+        printTree(sTree.root, 0, 1);
     }
     
     public static ArrayList<Token> lex(String input) {
@@ -94,7 +95,6 @@ public class Lex {
         if(currentToken.type == Token.TokenType.EOF)
         {
             System.out.println("Parse OK");
-            System.exit(0);
         }
         else
         {
@@ -107,11 +107,11 @@ public class Lex {
         Node<Token> node = getNode(Node.NodeType.programNode);
         
         currentToken = iToken.next();
-        System.out.println(currentToken);
+        //System.out.println(currentToken);
         if(currentToken.type == Token.TokenType.BEGIN)
         {
             currentToken = iToken.next();
-            System.out.println(currentToken);
+          //  System.out.println(currentToken);
         }
         else
         {
@@ -124,7 +124,7 @@ public class Lex {
         if(currentToken.type == Token.TokenType.RETURN)
         {
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
             return node;
         }
         else
@@ -142,14 +142,14 @@ public class Lex {
         if(currentToken.type == Token.TokenType.LBRA)
         {   
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
             node.children.add(stats());
-            System.out.println(currentToken + "block");
+            //System.out.println(currentToken + "block");
             
             if(currentToken.type == Token.TokenType.RBRA)
             {
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
                 return node;
             }
             else
@@ -182,7 +182,7 @@ public class Lex {
     {
         Node<Token> node = getNode(Node.NodeType.statNode);
         
-        System.out.println(currentToken);
+        //System.out.println(currentToken);
         
         switch (currentToken.type) {
             case LBRA:
@@ -230,11 +230,11 @@ public class Lex {
         if(currentToken.type == Token.TokenType.IF)
         {            
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
             if(currentToken.type == Token.TokenType.LPAREN)
             {
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
             }
             else
             {
@@ -249,7 +249,7 @@ public class Lex {
             if(currentToken.type == Token.TokenType.RPAREN)
             {
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
             }
             else
             {
@@ -271,12 +271,12 @@ public class Lex {
         if(currentToken.type == Token.TokenType.WHILE)
         {
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
             
             if(currentToken.type == Token.TokenType.LPAREN)
             {
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
             }
             else
             {
@@ -291,7 +291,7 @@ public class Lex {
             if(currentToken.type == Token.TokenType.RPAREN)
             {
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
             }
             else
             {
@@ -313,12 +313,12 @@ public class Lex {
         {
             node.data.add(currentToken);
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
             
             if(currentToken.type == Token.TokenType.ASSIGN)
             {
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
             }
             else
             {
@@ -331,7 +331,7 @@ public class Lex {
             if(currentToken.type == Token.TokenType.SEMICOLON)
             {
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
             }
             else
             {
@@ -355,13 +355,13 @@ public class Lex {
         if(currentToken.type == Token.TokenType.INTEGER)
         {
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
             
             if(currentToken.type == Token.TokenType.ID)
             {
                 node.data.add(currentToken);
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
             }
             else
             {
@@ -372,7 +372,7 @@ public class Lex {
             if(currentToken.type == Token.TokenType.SEMICOLON)
             {
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
             }
             else
             {
@@ -400,13 +400,13 @@ public class Lex {
         {
             currentToken = iToken.next();
             node.children.add(expr());
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
         }
         else if(currentToken.type == Token.TokenType.DIV)
         {
             currentToken = iToken.next();
             node.children.add(expr());
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
         }
         
         return node;
@@ -421,32 +421,32 @@ public class Lex {
             case EQ:
                 node.data.add(currentToken);
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
                 break;
             case DIFF:
                 node.data.add(currentToken);
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
                 break;
             case GEQT:
                 node.data.add(currentToken);
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
                 break;
             case GT:
                 node.data.add(currentToken);
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
                 break;
             case LEQT:
                 node.data.add(currentToken);
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
                 break;
             case LT:
                 node.data.add(currentToken);
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
                 break;
         }
         return node;
@@ -462,14 +462,14 @@ public class Lex {
         if(currentToken.type == Token.TokenType.ADD)
         {
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
             node.children.add(t());
             
         }
         else if(currentToken.type == Token.TokenType.SUB)
         {
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
             node.children.add(t());
         }
         
@@ -484,14 +484,14 @@ public class Lex {
         if(currentToken.type == Token.TokenType.LPAREN)
         {
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
             
             node.children.add(expr());
             
             if(currentToken.type == Token.TokenType.RPAREN)
             {
                 currentToken = iToken.next();
-                System.out.println(currentToken);
+                //System.out.println(currentToken);
             }
             else
             {
@@ -503,32 +503,57 @@ public class Lex {
         {
             node.data.add(currentToken);
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
         }
         else if(currentToken.type == Token.TokenType.NUMBER)
         {
             node.data.add(currentToken);
             currentToken = iToken.next();
-            System.out.println(currentToken);
+            //System.out.println(currentToken);
         }
         
         return node;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public static Node<Token> getNode(Node.NodeType nodeType)
     {
-        System.out.println(nodeType);
+        //System.out.println(nodeType);
         return new Node<Token>(nodeType);
+    }
+    
+    public static void printTree(Node<Token> node, int t, int s){
+        
+        for(int i=0; i<=t; i++){
+            System.out.print("\t");
+        }
+        
+        System.out.println(node.nodeType);
+        
+        t+=s;
+        
+        if(!node.data.isEmpty())
+        {
+           for(Token tk : node.data)
+           {
+               for(int i=0; i<=t; i++)
+               {
+                   System.out.print("\t");
+               }
+               System.out.println(tk);
+           }
+        }
+        
+        if(!node.children.isEmpty())
+        {
+            for(Node<Token> nd : node.children)
+           {
+               printTree(nd, t,1);
+           }
+        }
+        for(int i=0; i<t; i++)
+        {
+            System.out.print("\t");
+        }
+        System.out.println(node.nodeType);
     }
 }
