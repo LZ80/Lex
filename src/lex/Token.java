@@ -11,6 +11,7 @@ package lex;
  */
 public class Token {
     public enum TokenType {
+        BEGIN("begin"), RETURN("return"),
         EQ("=="), LEQT("<="), GEQT(">="), DIFF("<>"), LT("<"), GT(">"),  
         MULT("[*]"), DIV("[/]"), ADD("[+]"), SUB("[-]"), 
         LPAREN("\\("), RPAREN("\\)"), LBRA("\\{"), RBRA("\\}"), LSBRA("\\["), RSBRA("\\]"),
